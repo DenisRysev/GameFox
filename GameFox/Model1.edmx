@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище FoxingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="path" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Жанр">
+          <Key>
+            <PropertyRef Name="Код_жанра" />
+          </Key>
+          <Property Name="Код_жанра" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Код_заявки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_пользователя" Type="int" />
+          <Property Name="Возраст" Type="date" />
+          <Property Name="Код_турнира" Type="int" />
+          <Property Name="ФИО" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Игра">
+          <Key>
+            <PropertyRef Name="Код_игры" />
+          </Key>
+          <Property Name="Код_игры" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_категории" Type="int" />
+          <Property Name="Код_жанра" Type="int" />
+          <Property Name="Код_тематики" Type="int" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Возрастное_ограничение" Type="nvarchar" MaxLength="3" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="200" />
+          <Property Name="Фото" Type="nvarchar" MaxLength="255" />
+          <Property Name="Код_списка" Type="int" />
+        </EntityType>
+        <EntityType Name="Игротека">
+          <Key>
+            <PropertyRef Name="Код_игротеки" />
+          </Key>
+          <Property Name="Код_игротеки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_пользователя" Type="int" />
+          <Property Name="Время_начала" Type="nvarchar" MaxLength="50" />
+          <Property Name="Код_списка" Type="int" />
+          <Property Name="Количество_игроков" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Категории">
+          <Key>
+            <PropertyRef Name="Код_категории" />
+          </Key>
+          <Property Name="Код_категории" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nchar" MaxLength="30" />
+          <Property Name="Имя" Type="nchar" MaxLength="30" />
+          <Property Name="email" Type="nchar" MaxLength="30" />
+          <Property Name="Логин" Type="nchar" MaxLength="30" />
+          <Property Name="Пароль" Type="nchar" MaxLength="30" />
+          <Property Name="Тип_пользователя" Type="int" />
+          <Property Name="Доступ" Type="bit" />
+          <Property Name="Роль" Type="bit" />
+          <Property Name="Разрешение" Type="nvarchar" MaxLength="5" />
+          <Property Name="Фото" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Список">
+          <Key>
+            <PropertyRef Name="Код_списка" />
+          </Key>
+          <Property Name="Код_списка" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Фото" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Тематика">
+          <Key>
+            <PropertyRef Name="Код_тематики" />
+          </Key>
+          <Property Name="Код_тематики" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Тип_пользователя">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Турнир">
+          <Key>
+            <PropertyRef Name="Код_турнира" />
+          </Key>
+          <Property Name="Код_турнира" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_начала" Type="datetime" />
+          <Property Name="Код_игры" Type="int" />
+          <Property Name="Код_мастера" Type="int" />
+        </EntityType>
+        <Association Name="FK_Заявка_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Турнир">
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Турнир">
+              <PropertyRef Name="Код_турнира" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="Код_турнира" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Жанр">
+          <End Role="Жанр" Type="Self.Жанр" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанр">
+              <PropertyRef Name="Код_жанра" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_жанра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Категории">
+          <End Role="Категории" Type="Self.Категории" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категории">
+              <PropertyRef Name="Код_категории" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_категории" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Список">
+          <End Role="Список" Type="Self.Список" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Список">
+              <PropertyRef Name="Код_списка" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_списка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Тематика">
+          <End Role="Тематика" Type="Self.Тематика" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тематика">
+              <PropertyRef Name="Код_тематики" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_тематики" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игротека_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Игротека" Type="Self.Игротека" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Игротека">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игротека_Список">
+          <End Role="Список" Type="Self.Список" Multiplicity="0..1" />
+          <End Role="Игротека" Type="Self.Игротека" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Список">
+              <PropertyRef Name="Код_списка" />
+            </Principal>
+            <Dependent Role="Игротека">
+              <PropertyRef Name="Код_списка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Тип_пользователя">
+          <End Role="Тип_пользователя" Type="Self.Тип_пользователя" Multiplicity="0..1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_пользователя">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Тип_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Турнир_Игра">
+          <End Role="Игра" Type="Self.Игра" Multiplicity="0..1" />
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Игра">
+              <PropertyRef Name="Код_игры" />
+            </Principal>
+            <Dependent Role="Турнир">
+              <PropertyRef Name="Код_игры" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Турнир_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Турнир">
+              <PropertyRef Name="Код_мастера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FoxingModelContainer">
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Жанр" EntityType="Self.Жанр" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Игра" EntityType="Self.Игра" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Игротека" EntityType="Self.Игротека" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Категории" EntityType="Self.Категории" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Список" EntityType="Self.Список" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тематика" EntityType="Self.Тематика" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_пользователя" EntityType="Self.Тип_пользователя" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Турнир" EntityType="Self.Турнир" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Заявка_Пользователь" Association="Self.FK_Заявка_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Турнир" Association="Self.FK_Заявка_Турнир">
+            <End Role="Турнир" EntitySet="Турнир" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Жанр" Association="Self.FK_Игра_Жанр">
+            <End Role="Жанр" EntitySet="Жанр" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Категории" Association="Self.FK_Игра_Категории">
+            <End Role="Категории" EntitySet="Категории" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Список" Association="Self.FK_Игра_Список">
+            <End Role="Список" EntitySet="Список" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Тематика" Association="Self.FK_Игра_Тематика">
+            <End Role="Тематика" EntitySet="Тематика" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игротека_Пользователь" Association="Self.FK_Игротека_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Игротека" EntitySet="Игротека" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игротека_Список" Association="Self.FK_Игротека_Список">
+            <End Role="Список" EntitySet="Список" />
+            <End Role="Игротека" EntitySet="Игротека" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Тип_пользователя" Association="Self.FK_Пользователь_Тип_пользователя">
+            <End Role="Тип_пользователя" EntitySet="Тип_пользователя" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Турнир_Игра" Association="Self.FK_Турнир_Игра">
+            <End Role="Игра" EntitySet="Игра" />
+            <End Role="Турнир" EntitySet="Турнир" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Турнир_Пользователь" Association="Self.FK_Турнир_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Турнир" EntitySet="Турнир" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoxingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Жанр">
+          <Key>
+            <PropertyRef Name="Код_жанра" />
+          </Key>
+          <Property Name="Код_жанра" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Игра" Relationship="Self.FK_Игра_Жанр" FromRole="Жанр" ToRole="Игра" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="Код_заявки" />
+          </Key>
+          <Property Name="Код_заявки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_пользователя" Type="Int32" />
+          <Property Name="Возраст" Type="DateTime" Precision="0" />
+          <Property Name="Код_турнира" Type="Int32" />
+          <Property Name="ФИО" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Заявка_Пользователь" FromRole="Заявка" ToRole="Пользователь" />
+          <NavigationProperty Name="Турнир" Relationship="Self.FK_Заявка_Турнир" FromRole="Заявка" ToRole="Турнир" />
+        </EntityType>
+        <EntityType Name="Игра">
+          <Key>
+            <PropertyRef Name="Код_игры" />
+          </Key>
+          <Property Name="Код_игры" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_категории" Type="Int32" />
+          <Property Name="Код_жанра" Type="Int32" />
+          <Property Name="Код_тематики" Type="Int32" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Возрастное_ограничение" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Описание" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Фото" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Код_списка" Type="Int32" />
+          <NavigationProperty Name="Жанр" Relationship="Self.FK_Игра_Жанр" FromRole="Игра" ToRole="Жанр" />
+          <NavigationProperty Name="Категории" Relationship="Self.FK_Игра_Категории" FromRole="Игра" ToRole="Категории" />
+          <NavigationProperty Name="Список" Relationship="Self.FK_Игра_Список" FromRole="Игра" ToRole="Список" />
+          <NavigationProperty Name="Тематика" Relationship="Self.FK_Игра_Тематика" FromRole="Игра" ToRole="Тематика" />
+          <NavigationProperty Name="Турнир" Relationship="Self.FK_Турнир_Игра" FromRole="Игра" ToRole="Турнир" />
+        </EntityType>
+        <EntityType Name="Игротека">
+          <Key>
+            <PropertyRef Name="Код_игротеки" />
+          </Key>
+          <Property Name="Код_игротеки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_пользователя" Type="Int32" />
+          <Property Name="Время_начала" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Код_списка" Type="Int32" />
+          <Property Name="Количество_игроков" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Игротека_Пользователь" FromRole="Игротека" ToRole="Пользователь" />
+          <NavigationProperty Name="Список" Relationship="Self.FK_Игротека_Список" FromRole="Игротека" ToRole="Список" />
+        </EntityType>
+        <EntityType Name="Категории">
+          <Key>
+            <PropertyRef Name="Код_категории" />
+          </Key>
+          <Property Name="Код_категории" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Игра" Relationship="Self.FK_Игра_Категории" FromRole="Категории" ToRole="Игра" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Логин" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Тип_пользователя" Type="Int32" />
+          <Property Name="Доступ" Type="Boolean" />
+          <Property Name="Роль" Type="Boolean" />
+          <Property Name="Разрешение" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Фото" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Пользователь" FromRole="Пользователь" ToRole="Заявка" />
+          <NavigationProperty Name="Игротека" Relationship="Self.FK_Игротека_Пользователь" FromRole="Пользователь" ToRole="Игротека" />
+          <NavigationProperty Name="Тип_пользователя1" Relationship="Self.FK_Пользователь_Тип_пользователя" FromRole="Пользователь" ToRole="Тип_пользователя" />
+          <NavigationProperty Name="Турнир" Relationship="Self.FK_Турнир_Пользователь" FromRole="Пользователь" ToRole="Турнир" />
+        </EntityType>
+        <EntityType Name="Список">
+          <Key>
+            <PropertyRef Name="Код_списка" />
+          </Key>
+          <Property Name="Код_списка" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Фото" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Игра" Relationship="Self.FK_Игра_Список" FromRole="Список" ToRole="Игра" />
+          <NavigationProperty Name="Игротека" Relationship="Self.FK_Игротека_Список" FromRole="Список" ToRole="Игротека" />
+        </EntityType>
+        <EntityType Name="Тематика">
+          <Key>
+            <PropertyRef Name="Код_тематики" />
+          </Key>
+          <Property Name="Код_тематики" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Игра" Relationship="Self.FK_Игра_Тематика" FromRole="Тематика" ToRole="Игра" />
+        </EntityType>
+        <EntityType Name="Тип_пользователя">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Пользователь_Тип_пользователя" FromRole="Тип_пользователя" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Турнир">
+          <Key>
+            <PropertyRef Name="Код_турнира" />
+          </Key>
+          <Property Name="Код_турнира" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_начала" Type="DateTime" Precision="3" />
+          <Property Name="Код_игры" Type="Int32" />
+          <Property Name="Код_мастера" Type="Int32" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Турнир" FromRole="Турнир" ToRole="Заявка" />
+          <NavigationProperty Name="Игра" Relationship="Self.FK_Турнир_Игра" FromRole="Турнир" ToRole="Игра" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK_Турнир_Пользователь" FromRole="Турнир" ToRole="Пользователь" />
+        </EntityType>
+        <Association Name="FK_Игра_Жанр">
+          <End Role="Жанр" Type="Self.Жанр" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанр">
+              <PropertyRef Name="Код_жанра" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_жанра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Турнир">
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Турнир">
+              <PropertyRef Name="Код_турнира" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="Код_турнира" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Категории">
+          <End Role="Категории" Type="Self.Категории" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категории">
+              <PropertyRef Name="Код_категории" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_категории" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Список">
+          <End Role="Список" Type="Self.Список" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Список">
+              <PropertyRef Name="Код_списка" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_списка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игра_Тематика">
+          <End Role="Тематика" Type="Self.Тематика" Multiplicity="0..1" />
+          <End Role="Игра" Type="Self.Игра" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тематика">
+              <PropertyRef Name="Код_тематики" />
+            </Principal>
+            <Dependent Role="Игра">
+              <PropertyRef Name="Код_тематики" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Турнир_Игра">
+          <End Role="Игра" Type="Self.Игра" Multiplicity="0..1" />
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Игра">
+              <PropertyRef Name="Код_игры" />
+            </Principal>
+            <Dependent Role="Турнир">
+              <PropertyRef Name="Код_игры" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игротека_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Игротека" Type="Self.Игротека" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Игротека">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Игротека_Список">
+          <End Role="Список" Type="Self.Список" Multiplicity="0..1" />
+          <End Role="Игротека" Type="Self.Игротека" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Список">
+              <PropertyRef Name="Код_списка" />
+            </Principal>
+            <Dependent Role="Игротека">
+              <PropertyRef Name="Код_списка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Тип_пользователя">
+          <End Role="Тип_пользователя" Type="Self.Тип_пользователя" Multiplicity="0..1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_пользователя">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Тип_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Турнир_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="0..1" />
+          <End Role="Турнир" Type="Self.Турнир" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Турнир">
+              <PropertyRef Name="Код_мастера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoxingEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Жанр" EntityType="Self.Жанр" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" />
+          <EntitySet Name="Игра" EntityType="Self.Игра" />
+          <EntitySet Name="Игротека" EntityType="Self.Игротека" />
+          <EntitySet Name="Категории" EntityType="Self.Категории" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
+          <EntitySet Name="Список" EntityType="Self.Список" />
+          <EntitySet Name="Тематика" EntityType="Self.Тематика" />
+          <EntitySet Name="Тип_пользователя" EntityType="Self.Тип_пользователя" />
+          <EntitySet Name="Турнир" EntityType="Self.Турнир" />
+          <AssociationSet Name="FK_Игра_Жанр" Association="Self.FK_Игра_Жанр">
+            <End Role="Жанр" EntitySet="Жанр" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Пользователь" Association="Self.FK_Заявка_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Турнир" Association="Self.FK_Заявка_Турнир">
+            <End Role="Турнир" EntitySet="Турнир" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Категории" Association="Self.FK_Игра_Категории">
+            <End Role="Категории" EntitySet="Категории" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Список" Association="Self.FK_Игра_Список">
+            <End Role="Список" EntitySet="Список" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игра_Тематика" Association="Self.FK_Игра_Тематика">
+            <End Role="Тематика" EntitySet="Тематика" />
+            <End Role="Игра" EntitySet="Игра" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Турнир_Игра" Association="Self.FK_Турнир_Игра">
+            <End Role="Игра" EntitySet="Игра" />
+            <End Role="Турнир" EntitySet="Турнир" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игротека_Пользователь" Association="Self.FK_Игротека_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Игротека" EntitySet="Игротека" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Игротека_Список" Association="Self.FK_Игротека_Список">
+            <End Role="Список" EntitySet="Список" />
+            <End Role="Игротека" EntitySet="Игротека" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Тип_пользователя" Association="Self.FK_Пользователь_Тип_пользователя">
+            <End Role="Тип_пользователя" EntitySet="Тип_пользователя" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Турнир_Пользователь" Association="Self.FK_Турнир_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Турнир" EntitySet="Турнир" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FoxingModelContainer" CdmEntityContainer="FoxingEntities2">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="FoxingModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FoxingModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Жанр">
+            <EntityTypeMapping TypeName="FoxingModel.Жанр">
+              <MappingFragment StoreEntitySet="Жанр">
+                <ScalarProperty Name="Код_жанра" ColumnName="Код_жанра" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заявка">
+            <EntityTypeMapping TypeName="FoxingModel.Заявка">
+              <MappingFragment StoreEntitySet="Заявка">
+                <ScalarProperty Name="Код_заявки" ColumnName="Код_заявки" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код_пользователя" />
+                <ScalarProperty Name="Возраст" ColumnName="Возраст" />
+                <ScalarProperty Name="Код_турнира" ColumnName="Код_турнира" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Игра">
+            <EntityTypeMapping TypeName="FoxingModel.Игра">
+              <MappingFragment StoreEntitySet="Игра">
+                <ScalarProperty Name="Код_игры" ColumnName="Код_игры" />
+                <ScalarProperty Name="Код_категории" ColumnName="Код_категории" />
+                <ScalarProperty Name="Код_жанра" ColumnName="Код_жанра" />
+                <ScalarProperty Name="Код_тематики" ColumnName="Код_тематики" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Возрастное_ограничение" ColumnName="Возрастное_ограничение" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Код_списка" ColumnName="Код_списка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Игротека">
+            <EntityTypeMapping TypeName="FoxingModel.Игротека">
+              <MappingFragment StoreEntitySet="Игротека">
+                <ScalarProperty Name="Код_игротеки" ColumnName="Код_игротеки" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код_пользователя" />
+                <ScalarProperty Name="Время_начала" ColumnName="Время_начала" />
+                <ScalarProperty Name="Код_списка" ColumnName="Код_списка" />
+                <ScalarProperty Name="Количество_игроков" ColumnName="Количество_игроков" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Категории">
+            <EntityTypeMapping TypeName="FoxingModel.Категории">
+              <MappingFragment StoreEntitySet="Категории">
+                <ScalarProperty Name="Код_категории" ColumnName="Код_категории" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователь">
+            <EntityTypeMapping TypeName="FoxingModel.Пользователь">
+              <MappingFragment StoreEntitySet="Пользователь">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Тип_пользователя" ColumnName="Тип_пользователя" />
+                <ScalarProperty Name="Доступ" ColumnName="Доступ" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+                <ScalarProperty Name="Разрешение" ColumnName="Разрешение" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Список">
+            <EntityTypeMapping TypeName="FoxingModel.Список">
+              <MappingFragment StoreEntitySet="Список">
+                <ScalarProperty Name="Код_списка" ColumnName="Код_списка" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тематика">
+            <EntityTypeMapping TypeName="FoxingModel.Тематика">
+              <MappingFragment StoreEntitySet="Тематика">
+                <ScalarProperty Name="Код_тематики" ColumnName="Код_тематики" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тип_пользователя">
+            <EntityTypeMapping TypeName="FoxingModel.Тип_пользователя">
+              <MappingFragment StoreEntitySet="Тип_пользователя">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Турнир">
+            <EntityTypeMapping TypeName="FoxingModel.Турнир">
+              <MappingFragment StoreEntitySet="Турнир">
+                <ScalarProperty Name="Код_турнира" ColumnName="Код_турнира" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Дата_начала" ColumnName="Дата_начала" />
+                <ScalarProperty Name="Код_игры" ColumnName="Код_игры" />
+                <ScalarProperty Name="Код_мастера" ColumnName="Код_мастера" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

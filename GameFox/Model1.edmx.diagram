@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0bcf5a3921e48b3971ad4fb2fb68873" Name="Diagram1">
+        <EntityTypeShape EntityType="FoxingModel.Image" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.sysdiagram" Width="1.5" PointX="8.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Жанр" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Заявка" Width="1.5" PointX="10.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Игра" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Игротека" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Категории" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Пользователь" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Список" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Тематика" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Тип_пользователя" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoxingModel.Турнир" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="FoxingModel.FK_Игра_Жанр" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Заявка_Пользователь" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Заявка_Турнир" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Игра_Категории" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Игра_Список" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Игра_Тематика" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Турнир_Игра" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Игротека_Пользователь" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Игротека_Список" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Пользователь_Тип_пользователя" ManuallyRouted="false" />
+        <AssociationConnector Association="FoxingModel.FK_Турнир_Пользователь" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

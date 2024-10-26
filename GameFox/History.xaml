@@ -1,0 +1,44 @@
+﻿<Window x:Class="GameFox.History"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameFox"
+        mc:Ignorable="d"
+        Title="History" Height="450" Width="800">
+    <Grid>
+        <ListView x:Name="list"  HorizontalAlignment="Left" Height="284" Margin="31,32,0,0" VerticalAlignment="Top" Width="734">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Фамилия}"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Имя}"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Отчество}"/>
+                    <GridViewColumn Header="Код_паспорта" DisplayMemberBinding="{Binding Код_паспорта}"/>
+                    <GridViewColumn Header="Код_подразделения" DisplayMemberBinding="{Binding Код_подразделения}"/> 
+                    <GridViewColumn Header="Статус входа" DisplayMemberBinding="{Binding Статус}"/>
+                    <GridViewColumn Header="Фото" DisplayMemberBinding="{Binding Фото}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Телефон}"/>
+                    <GridViewColumn Header="Почта" DisplayMemberBinding="{Binding Почта}"/>
+                    <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Логин}"/>
+                    <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Пароль}"/>
+                   <GridViewColumn Header="Код_доллжности" DisplayMemberBinding="{Binding Код_доллжности}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btn" Content="Смотреть" HorizontalAlignment="Left" Margin="505,363,0,0" VerticalAlignment="Top" Background="#FF0047AB" Foreground="White" BorderBrush="White" Click="btn_Click" Height="40" Width="260" FontFamily="Century Gothic" FontSize="18">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="back" Content="Назад" FontFamily="Century Gothic" HorizontalAlignment="Left" Margin="31,363,0,0" VerticalAlignment="Top" Width="260" Height="40" Background="White" Foreground="Black" FontSize="18" BorderBrush="Black" Click="back_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        
+    </Grid>
+</Window>
